@@ -4,6 +4,7 @@ import ssl
 import yaml
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from datetime import datetime
 
 
 class Person:
@@ -33,16 +34,28 @@ class SecretSanta:
         return participants
 
     def create_pairings(self):
-        self.pairings = {}
-        for participant in self.participants:
-            recipient = self.get_recipient(participant)
-            if participant.name == recipient.name:
-                return self.create_pairings()
-            self.pairings[participant.name] = recipient.name
+        index = 0
+        while len(self.pairings.keys()) != len(self.participants):
+            current_participant = self.participants[index]
+            recipient = self.get_recipient(current_participant)
+            if current_participant.name == recipient.name:
+                self.pairings = {}
+                index = 0
+            else:
+                self.pairings[current_participant.name] = recipient.name
+                index += 1
 
     def get_recipient(self, giver: Person) -> Person:
+        if self.participants[-1].name == giver.name:
+            assigned_recipients = [recipient for recipient in secret_santa.pairings.values()]
+            remaining_person = [person for person in self.participants if person.name not in assigned_recipients]
+            self.recipient_check = 0
+            return remaining_person[0]
+
         if self.recipient_check > 10:
+            self.recipient_check = 0
             return giver
+        random.seed()
         random_number = random.randint(0, len(self.participants) - 1)
         if self.participants[random_number].name in giver.invalid_match or \
                 self.participants[random_number].name in self.pairings.values():
@@ -80,6 +93,10 @@ class SecretSanta:
 if __name__ == '__main__':
     secret_santa = SecretSanta()
     secret_santa.create_pairings()
-    for gifter, giftee in secret_santa.pairings.items():
-        print(f"{gifter}, {giftee}")
+    log_config = yaml.safe_load(open('log_config.yaml'))
+    with open(f"{log_config['PATH']}/pairings.txt", "a") as f:
+        f.write(f"------------------------------------{datetime.now().year}------------------------------------\n")
+        for gifter, giftee in secret_santa.pairings.items():
+            f.write(f"{gifter}, {giftee}\n")
+        f.write("\n\n")
     secret_santa.send_emails()
