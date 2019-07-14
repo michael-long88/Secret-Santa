@@ -44,7 +44,6 @@ class SecretSanta:
         if self.recipient_check > 10:
             return giver
         random_number = random.randint(0, len(self.participants) - 1)
-        print(f"random number: {random_number}")
         if self.participants[random_number].name in giver.invalid_match or \
                 self.participants[random_number].name in self.pairings.values():
             self.recipient_check += 1
@@ -54,15 +53,16 @@ class SecretSanta:
 
     # https://realpython.com/python-send-email/
     def send_emails(self):
-        port = 465
-        password = input("Type your password and press enter: ")
-        sender_email = "holley.secret.santa@gmail.com"
+        config = yaml.safe_load(open('email_config.yaml'))
+        port = config['PORT']
+        password = config['PASSWORD']
+        sender_email = config['SENDER_EMAIL']
 
         # Create a secure SSL context
         context = ssl.create_default_context()
 
-        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-            server.login("holley.secret.santa", password)
+        with smtplib.SMTP_SSL(config['SMTP_SERVER'], port, context=context) as server:
+            server.login(config['USERNAME'], password)
 
             for person in self.participants:
                 message = MIMEMultipart()
@@ -73,13 +73,13 @@ class SecretSanta:
                     f"Secret Santa."
                 message.attach(MIMEText(body, 'plain'))
                 text = message.as_string()
+                print("Sending emails...")
                 server.sendmail(sender_email, sender_email, text)
 
 
 if __name__ == '__main__':
     secret_santa = SecretSanta()
     secret_santa.create_pairings()
-    print(secret_santa.pairings.values())
     for gifter, giftee in secret_santa.pairings.items():
         print(f"{gifter}, {giftee}")
     secret_santa.send_emails()
