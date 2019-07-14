@@ -67,14 +67,14 @@ class SecretSanta:
             for person in self.participants:
                 message = MIMEMultipart()
                 message['From'] = sender_email
-                message['To'] = sender_email
+                message['To'] = person.email
                 message['Subject'] = "Secret Santa drawing"
                 body = f"Hello, {person.name}. \n\nYou have drawn {self.pairings[person.name]} for this year's " \
                     f"Secret Santa."
                 message.attach(MIMEText(body, 'plain'))
                 text = message.as_string()
                 print("Sending emails...")
-                server.sendmail(sender_email, sender_email, text)
+                server.sendmail(sender_email, person.email, text)
 
 
 if __name__ == '__main__':
