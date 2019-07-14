@@ -9,8 +9,9 @@ After the pairings has been completed, the program will then email each particip
 # particpants.yaml 
 Each participant will need to have their name listed in the invalid_matches list to prevent matching themselves. The actual file portion starts with and includes "---":
 
-\---   
-participant1:
+```
+---   
+participant1:   
   name: First Participant
   email: participant1@example.com
   invalid_matches: [First Participant]
@@ -18,3 +19,4 @@ participant2:
   name: Second Participant
   email: participant2@example.com
   invalid_matches: [Second Participant]
+```
