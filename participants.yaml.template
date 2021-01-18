@@ -1,9 +1,0 @@
----
-participant1:
-  name: First Participant
-  email: participant1@example.com
-  invalid_matches: [First Participant]
-participant2:
-  name: Second Participant
-  email: participant2@example.com
-  invalid_matches: [Second Participant]

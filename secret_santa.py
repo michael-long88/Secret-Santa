@@ -2,6 +2,8 @@ import random
 import smtplib
 import ssl
 import yaml
+import json
+import pandas as pd
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
@@ -19,17 +21,23 @@ class Person:
 
 class SecretSanta:
     def __init__(self):
-        self.participants = SecretSanta.get_participants()
         self.pairings = {}
         self.recipient_check = 0
+        self.participants_dict = {}
+        self.pairings_csv = 'pairings.csv'
+        self.participants_json = 'participants.json'
+        self.participants = self.get_participants()
 
-    @staticmethod
-    def get_participants() -> list:
+    def get_participants(self) -> list:
         participants = []
-        with open('participants.yaml') as f:
-            participants_yaml = yaml.safe_load(f)
-            for participant in participants_yaml.values():
-                new_person = Person(participant['name'], participant['email'], participant['invalid_matches'])
+        with open(self.participants_json) as json_file:
+            participants_json = json.load(json_file)
+            for participant in participants_json:
+                new_person = Person(participant, participants_json[participant]['email'], participants_json[participant]['invalid_matches'])
+                self.participants_dict[participant] = {
+                    'email': participants_json[participant]['email'],
+                    'invalid_matches': participants_json[participant]['invalid_matches']
+                }
                 participants.append(new_person)
         return participants
 
@@ -89,14 +97,29 @@ class SecretSanta:
                 print("Sending emails...")
                 server.sendmail(sender_email, person.email, text)
 
+    def add_new_pairings(self):
+        pairings_df = pd.read_csv(self.pairings_csv)
+        new_rows = {
+            'year': [datetime.now().year] * len(self.pairings.keys()),
+            'gifter': [],
+            'giftee': []
+        }
+        for giver, receiver in self.pairings.items():
+            new_rows['gifter'].append(giver)
+            new_rows['giftee'].append(receiver)
+        pairings_df = pairings_df.append(pd.DataFrame.from_dict(new_rows), ignore_index=True)
+        pairings_df.to_csv(self.pairings_csv, index=False)
+
+    def update_invalid_matches(self):
+        for gifter, giftee in self.pairings.items():
+            self.participants_dict[gifter]['invalid_matches'][-1] = giftee
+        with open(self.participants_json, 'w') as json_file:
+            json.dump(self.participants_dict, json_file, indent=2)
+
 
 if __name__ == '__main__':
     secret_santa = SecretSanta()
     secret_santa.create_pairings()
-    log_config = yaml.safe_load(open('log_config.yaml'))
-    with open(f"{log_config['PATH']}/pairings.txt", "a") as f:
-        f.write(f"------------------------------------{datetime.now().year}------------------------------------\n")
-        for gifter, giftee in secret_santa.pairings.items():
-            f.write(f"{gifter}, {giftee}\n")
-        f.write("\n\n")
+    secret_santa.add_new_pairings()
+    secret_santa.update_invalid_matches()
     secret_santa.send_emails()
