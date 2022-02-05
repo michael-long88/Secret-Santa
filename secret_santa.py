@@ -55,7 +55,7 @@ class SecretSanta:
 
     def get_recipient(self, giver: Person) -> Person:
         if self.participants[-1].name == giver.name:
-            assigned_recipients = [recipient for recipient in secret_santa.pairings.values()]
+            assigned_recipients = list(secret_santa.pairings.values())
             remaining_person = [person for person in self.participants if person.name not in assigned_recipients]
             self.recipient_check = 0
             return remaining_person[0]
