@@ -89,7 +89,7 @@ class SecretSanta:
                 message = MIMEMultipart()
                 message['From'] = sender_email
                 message['To'] = person.email
-                message['Subject'] = "Secret Santa drawing"
+                message['Subject'] = f"Secret Santa drawing for {person.name}"
                 body = f"Hello, {person.name}. \n\nYou have drawn {self.pairings[person.name]} for this year's " \
                     f"Secret Santa."
                 message.attach(MIMEText(body, 'plain'))
