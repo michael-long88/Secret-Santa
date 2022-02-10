@@ -94,7 +94,7 @@ class SecretSanta:
                     f"Secret Santa."
                 message.attach(MIMEText(body, 'plain'))
                 text = message.as_string()
-                print("Sending emails...")
+                print(f"Sending email to {person.name}...")
                 server.sendmail(sender_email, person.email, text)
 
     def add_new_pairings(self):
