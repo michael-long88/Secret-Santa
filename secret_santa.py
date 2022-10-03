@@ -58,7 +58,7 @@ class SecretSanta:
             assigned_recipients = list(secret_santa.pairings.values())
             remaining_person = [person for person in self.participants if person.name not in assigned_recipients]
             self.recipient_check = 0
-            return remaining_person[0]
+            return remaining_person[0] if remaining_person[0] not in giver.invalid_match else giver
 
         if self.recipient_check > 10:
             self.recipient_check = 0
