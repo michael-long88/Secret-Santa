@@ -1,0 +1,225 @@
+{
+  "Alice Johnson": {
+    "email": "alice.johnson@example.com",
+    "invalid_matches": [
+      "Alice Johnson",
+      "Bob Johnson",
+      "Charlie Johnson",
+      "Diana Johnson"
+    ]
+  },
+  "Bob Johnson": {
+    "email": "bob.johnson@example.com",
+    "invalid_matches": [
+      "Bob Johnson",
+      "Alice Johnson",
+      "Charlie Johnson",
+      "Diana Johnson",
+      "Emma Smith"
+    ]
+  },
+  "Charlie Johnson": {
+    "email": "charlie.johnson@example.com",
+    "invalid_matches": [
+      "Charlie Johnson",
+      "Alice Johnson",
+      "Bob Johnson",
+      "Diana Johnson"
+    ]
+  },
+  "Diana Johnson": {
+    "email": "diana.johnson@example.com",
+    "invalid_matches": [
+      "Diana Johnson",
+      "Alice Johnson",
+      "Bob Johnson",
+      "Charlie Johnson",
+      "Frank Garcia"
+    ]
+  },
+  "Emma Smith": {
+    "email": "emma.smith@example.com",
+    "invalid_matches": [
+      "Emma Smith",
+      "Bob Johnson",
+      "Frank Smith",
+      "George Smith"
+    ]
+  },
+  "Frank Smith": {
+    "email": "frank.smith@example.com",
+    "invalid_matches": [
+      "Frank Smith",
+      "Emma Smith",
+      "George Smith",
+      "Hannah Davis"
+    ]
+  },
+  "George Smith": {
+    "email": "george.smith@example.com",
+    "invalid_matches": [
+      "George Smith",
+      "Emma Smith",
+      "Frank Smith",
+      "Olivia Jones",
+      "Hannah Davis"
+    ]
+  },
+  "Hannah Davis": {
+    "email": "hannah.davis@example.com",
+    "invalid_matches": [
+      "Hannah Davis",
+      "Frank Smith",
+      "George Smith",
+      "Ian Davis"
+    ]
+  },
+  "Ian Davis": {
+    "email": "ian.davis@example.com",
+    "invalid_matches": [
+      "Ian Davis",
+      "Hannah Davis",
+      "Julia Chen",
+      "Kevin Miller"
+    ]
+  },
+  "Julia Chen": {
+    "email": "julia.chen@example.com",
+    "invalid_matches": [
+      "Julia Chen",
+      "Ian Davis",
+      "Kate Chen",
+      "Leo Chen",
+      "Mia Wilson"
+    ]
+  },
+  "Kate Chen": {
+    "email": "kate.chen@example.com",
+    "invalid_matches": [
+      "Kate Chen",
+      "Julia Chen",
+      "Leo Chen"
+    ]
+  },
+  "Leo Chen": {
+    "email": "leo.chen@example.com",
+    "invalid_matches": [
+      "Leo Chen",
+      "Julia Chen",
+      "Kate Chen",
+      "Nathan Rodriguez",
+      "Olivia Jones",
+      "Paul Taylor"
+    ]
+  },
+  "Mia Wilson": {
+    "email": "mia.wilson@example.com",
+    "invalid_matches": [
+      "Mia Wilson",
+      "Julia Chen",
+      "Nathan Rodriguez"
+    ]
+  },
+  "Nathan Rodriguez": {
+    "email": "nathan.rodriguez@example.com",
+    "invalid_matches": [
+      "Nathan Rodriguez",
+      "Leo Chen",
+      "Mia Wilson",
+      "Oscar Martinez"
+    ]
+  },
+  "Oscar Martinez": {
+    "email": "oscar.martinez@example.com",
+    "invalid_matches": [
+      "Oscar Martinez",
+      "Nathan Rodriguez",
+      "Paul Taylor",
+      "Rachel Lee",
+      "Sarah Brown"
+    ]
+  },
+  "Paul Taylor": {
+    "email": "paul.taylor@example.com",
+    "invalid_matches": [
+      "Paul Taylor",
+      "Leo Chen",
+      "Oscar Martinez",
+      "Quinn Lewis"
+    ]
+  },
+  "Quinn Lewis": {
+    "email": "quinn.lewis@example.com",
+    "invalid_matches": [
+      "Quinn Lewis",
+      "Paul Taylor",
+      "Rachel Lee",
+      "Uma Patel"
+    ]
+  },
+  "Rachel Lee": {
+    "email": "rachel.lee@example.com",
+    "invalid_matches": [
+      "Rachel Lee",
+      "Oscar Martinez",
+      "Quinn Lewis",
+      "Sarah Brown",
+      "William Thompson"
+    ]
+  },
+  "Sarah Brown": {
+    "email": "sarah.brown@example.com",
+    "invalid_matches": [
+      "Sarah Brown",
+      "Oscar Martinez",
+      "Rachel Lee",
+      "Tom Wilson"
+    ]
+  },
+  "Tom Wilson": {
+    "email": "tom.wilson@example.com",
+    "invalid_matches": [
+      "Tom Wilson",
+      "Sarah Brown",
+      "Uma Patel",
+      "Vince Clark"
+    ]
+  },
+  "Uma Patel": {
+    "email": "uma.patel@example.com",
+    "invalid_matches": [
+      "Uma Patel",
+      "Quinn Lewis",
+      "Tom Wilson",
+      "William Thompson"
+    ]
+  },
+  "Vince Clark": {
+    "email": "vince.clark@example.com",
+    "invalid_matches": [
+      "Vince Clark",
+      "Tom Wilson",
+      "William Thompson",
+      "Zachary Adams"
+    ]
+  },
+  "William Thompson": {
+    "email": "william.thompson@example.com",
+    "invalid_matches": [
+      "William Thompson",
+      "Rachel Lee",
+      "Uma Patel",
+      "Vince Clark",
+      "Zachary Adams"
+    ]
+  },
+  "Zachary Adams": {
+    "email": "zachary.adams@example.com",
+    "invalid_matches": [
+      "Zachary Adams",
+      "Vince Clark",
+      "William Thompson",
+      "Diana Johnson"
+    ]
+  }
+}
