@@ -1,0 +1,12 @@
+[project]
+name = "secret-santa"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "polars>=1.29.0",
+    "pytest>=8.3.5",
+    "pyyaml>=6.0.2",
+    "typer>=0.15.4",
+]
