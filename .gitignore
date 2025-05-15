@@ -1,4 +1,14 @@
-email_config.yaml
-pairings.csv
-participants.json
 .DS_Store
+
+# IDE specific
+.vscode
+.zed
+
+__pycache__
+.pytest_cache
+.venv
+
+# Data
+email_config.yaml
+data/**
+!data/participants_template.json
