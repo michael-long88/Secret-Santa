@@ -52,9 +52,6 @@ def test_secret_santa_creates_valid_pairings(secret_santa: SecretSanta):
             f"Invalid match: {gifter} -> {giftee}"
         )
 
-    print_pairings(pairings)
-    assert False
-
 
 def test_secret_santa_handles_impossible_constraints():
     """Test that Secret Santa algorithm properly handles impossible constraints."""
